@@ -1,6 +1,6 @@
-#Algorithm homework or Project
+# Algorithm-Homework-and-Project
 
-#first homework
+# first homework - Quick Sort
 the propose is the realizing the quick sort in many ways
 
  1. Iteraive method
