@@ -3,8 +3,9 @@
 #include "my_stdlib.h"
 
 /* the sort that you use */
-#define qsort QS_ITER
+#define qsort INSERT
 
+#define makeLine(i, n) if (!(i % n)) { printf("\n"); }
 int main(void) {
 	int i, n;
 	RECORD Array[N_MAX_RECORDS];
@@ -12,13 +13,12 @@ int main(void) {
 
 	n = N_MAX_RECORDS;
 
-	
 	init_RECORD2_array(Array2, n);
 
 	printf("* Data before sort: ");
 	for (i = 0; i < n; i++) {
-		if (!(i % 5)) printf("\n");
-		printf(" ([%u]) ", Array2[i]);
+		makeLine(i, 15);
+		printf(" ([%u]) ,", Array2[i]);
 	}
 	printf("\n\n");
 
@@ -26,25 +26,30 @@ int main(void) {
 
 	printf("* Data after sort: ");
 	for (int i = 0; i < n; i++) {
-		if (!(i % 5)) printf("\n");
-		printf(" ([%u]) ", Array2[i]);
+		makeLine(i, 15);
+		printf(" ([%u]) ,", Array2[i]);
 	}
 	printf("\n\n");
-
 
 	init_RECORD_array(Array, n);
 
 	printf("* Data before sort: ");
-	for (i = 0; i < n; i++)
-		printf(" (0x%s, %d, [%u], 0%s, %d) ", Array[i].hexadecimal, Array[i].dummy1[0], Array[i].key, Array[i].octal, Array[i].dummy2[0]);
+	for (i = 0; i < n; i++) {
+		makeLine(i, 5);
+		printf(" (0x%s, %d, [%u], 0%s, %d) ,", Array[i].hexadecimal, Array[i].dummy1[0], Array[i].key, Array[i].octal, Array[i].dummy2[0]);
+	}
 	printf("\n\n");
 
 	qsort(Array, n, sizeof(RECORD), my_record_keys_compare);
 
 	printf("* Data after sort: ");
-	for (int i = 0; i < n; i++)
-		printf(" (0x%s, %d, [%u], 0%s, %d) ", Array[i].hexadecimal, Array[i].dummy1[0], Array[i].key, Array[i].octal, Array[i].dummy2[0]);
+	for (int i = 0; i < n; i++) {
+		makeLine(i, 5);
+		printf(" (0x%s, %d, [%u], 0%s, %d) ,", Array[i].hexadecimal, Array[i].dummy1[0], Array[i].key, Array[i].octal, Array[i].dummy2[0]);
+	}
 	printf("\n\n");
 
 	return 0;
 }
+#undef qsort
+#undef makeLine

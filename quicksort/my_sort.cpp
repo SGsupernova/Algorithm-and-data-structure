@@ -4,7 +4,6 @@
 #include "my_stdlib.h"
 #include <time.h>
 
-
 void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 	size_t i, j;
 	char * qi, * qj, * qp;
@@ -12,7 +11,7 @@ void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 	while (1 < num) {
 		i = 0;
 		j = num - 1;
-		qi = (char *)base;
+		qi = (char *) base;
 		qj = qi + size * j;
 		qp = qj;
 
@@ -31,7 +30,7 @@ void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 
 				/* swap as many as possible */
 				for (ms = size; 0 < ms;
-					ms -=m, q1 += m, q2 += m) {
+						ms -=m, q1 += m, q2 += m) {
 					m = ms < sizeof(buf) ? ms : sizeof(buf);
 					memcpy(buf, q1, m);
 					memcpy(q1, q2, m);
@@ -40,7 +39,6 @@ void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 			}
 		}
 
-
 		if (qi != qp) {
 			char buf[MAX_BUF];
 			char *q1 = qi;
@@ -48,7 +46,7 @@ void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 			size_t m, ms;
 
 			for (ms = size;0 < ms; 
-				ms -= m, q1 += m, q2 += m) {
+					ms -= m, q1 += m, q2 += m) {
 				m = ms < sizeof(buf) ? ms : sizeof(buf);
 				memcpy(buf, q1, m);
 				memcpy(q1, q2, m);
@@ -71,43 +69,58 @@ void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 		}
 	}
 }
+
+void INSERT(void * base, size_t num, size_t size, _Cmpfun* cmp) {
+	int i = num - 1, j;
+	char *max_loca, *begin; //max_loca : the maximum location such that the element can move
+	char *temp_buf = (char*) calloc(MAX_BUF, sizeof(char));
+	size_t m, ms;
+
+	while (i-- > 0) {
+		max_loca = (char *)base + size * i;
+		
+		/* save the beginning element in temp_buf */
+		for (ms = size; 0 < ms; ms -= m, max_loca += m, temp_buf += m) {
+			m = ms < sizeof(temp_buf) ? ms : sizeof(temp_buf);
+			memcpy(temp_buf, max_loca, m);
+		}
+		temp_buf -= size;
+
+		j = i;
+		while (++j < num && (*cmp)(temp_buf, max_loca) > 0) {
+			max_loca += size;
+		}
+
+		/* base[i] is the smallest element in the subarray from i to n - 1 */
+		if (--j == i) continue;
+		max_loca -= size;
+
+		begin = (char *)base + size * i;
+
+		/* move the each element to left */
+		memcpy (begin, begin + size, size * (j - i));
+
+		for (ms = size; 0 < ms; ms -= m, max_loca += m, temp_buf += m) {
+			m = ms < sizeof(temp_buf) ? ms : sizeof(temp_buf);
+			memcpy(max_loca, temp_buf, m);
+		}
+	}
+}
+
 /*
-#define INSERT_FORK(TYPE)									\
-TYPE * rec_base = (TYPE *) base;						\
-TYPE tmp;												\
-for (i = 1; i < num; i++) {								\
-tmp = rec_base[i];									\
-j = i;												\
-while ((j > 0) && compar(rec_base[j - 1], tmp)) {	\
-rec_base[j] = rec_base[j - 1];					\
-j --;											\
-}													\
-rec_base[j] = tmp;									\
-}
+   void QS_REC(void * base, size_t num, size_t size, _Cmpfun compar) {
 
-void INSERT(void * base, size_t num, size_t size, _Cmpfun* compar) {
-int i, j;
+   }
 
-if (size == sizeof(RECORD2)) {
-INSERT_FORK(RECORD2);
-} else {
-INSERT_FORK(RECORD);
-}
-}
-
-void QS_REC(void * base, size_t num, size_t size, _Cmpfun compar) {
-
-}
-
-void QS_REC_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun compar) {
+   void QS_REC_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun compar) {
 
 
-}
+   }
 
-void QS_ITER_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun compar) {
+   void QS_ITER_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun compar) {
 
-}
-*/
+   }
+   */
 
 int my_record_keys_compare(const void *a, const void *b) {
 	RECORD *rec_a = (RECORD *)a,
@@ -120,7 +133,7 @@ int my_unsigned_int_keys_compare(const void *a, const void *b) {
 	RECORD2 ui_a = *(RECORD2 *)a,
 			ui_b = *(RECORD2 *)b;
 
-	return (long long int)ui_a - ui_b;
+	return (long long int) ui_a - ui_b;
 }
 
 void init_RECORD_array(RECORD *data, int n) {
@@ -176,5 +189,3 @@ void init_RECORD2_array(RECORD2 *data, int n) {
 		tmp = data[i]; data[i] = data[j]; data[j] = tmp;
 	}
 }
-
-

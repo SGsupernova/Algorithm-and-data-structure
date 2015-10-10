@@ -2,11 +2,11 @@
  * Description	: setting type and declare functions
  * */
 
+/* DEFINE */
+#define N_MAX_RECORDS 16
+#define MAX_BUF 300
+
 /* function type define */
-
-#define N_MAX_RECORDS 64
-#define MAX_BUF 289
-
 typedef int _Cmpfun(const void *, const void *);
 
 
@@ -26,7 +26,6 @@ void QS_REC_PIVOT_INSERT(void *, size_t, size_t, _Cmpfun *);
 void QS_ITER_PIVOT_INSERT(void *, size_t, size_t, _Cmpfun *);
 
 //void MY_BEST_SORT(void *, size_t, size_t, _Cmpfun *);
-//
 
 int my_record_keys_compare(const void *, const void *);
 int my_unsigned_int_keys_compare(const void *, const void *);
