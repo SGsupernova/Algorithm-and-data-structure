@@ -3,7 +3,7 @@
  * */
 
 /* DEFINE */
-#define N_MAX_RECORDS 16
+#define N_MAX_RECORDS 3000
 #define MAX_BUF 300
 #define BRANCH 10
 

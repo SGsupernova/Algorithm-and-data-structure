@@ -207,7 +207,7 @@ void QS_REC_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun *cmp) {
 		}
 	}
 
-	
+
 	j = num - i - 1, qi += size;
 
 	/* If the number of elements to be sorted is less than BRANCH,
@@ -215,11 +215,79 @@ void QS_REC_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun *cmp) {
 	if (j > 1) (j < BRANCH) ? INSERT(qi, j, size, cmp) : QS_REC_PIVOT_INSERT(qi, j, size, cmp);
 	if (i > 1) (i < BRANCH) ? INSERT(base, i, size, cmp) : QS_REC_PIVOT_INSERT(base, i, size, cmp);
 }
-/*
-   void QS_ITER_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun *cmp) {
 
-   }
-   */
+
+
+void QS_ITER_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun *cmp) {
+	size_t i, j;
+	char * qi, * qj, * qp;
+
+	while (1 < num) {
+		/* initialize the variables */
+		i = 0;
+		j = num - 1;
+		qi = (char *) base;
+		qj = qi + size * j;
+		qp = qj;
+
+		/* partition about pivot */
+		while (i < j) {
+			while (i < j && (*cmp) (qi, qp) <= 0)
+				i++, qi += size;
+			while (i < j && (*cmp) (qp, qj) <= 0)
+				--j, qj -= size;
+
+			if (i < j) {
+				char buf[MAX_BUF];
+				char *q1 = qi;
+				char *q2 = qj;
+				size_t m, ms;
+
+				/* swap as many as possible */
+				for (ms = size; 0 < ms;
+						ms -=m, q1 += m, q2 += m) {
+					m = ms < sizeof(buf) ? ms : sizeof(buf);
+					memcpy(buf, q1, m);
+					memcpy(q1, q2, m);
+					memcpy(q2, buf, m);
+				}
+			}
+		}
+
+		if (qi != qp) {
+			char buf[MAX_BUF];
+			char *q1 = qi;
+			char *q2 = qp;
+			size_t m, ms;
+
+			for (ms = size; 0 < ms; 
+					ms -= m, q1 += m, q2 += m) {
+				m = ms < sizeof(buf) ? ms : sizeof(buf);
+				memcpy(buf, q1, m);
+				memcpy(q1, q2, m);
+				memcpy(q2, buf, m);
+			}
+		}
+
+		j = num - i - 1, qi += size;
+		if (j < i) {
+			/* recurse on smaller partition */
+			if (1 < j) (j < BRANCH) ? INSERT(qi, j, size, cmp) : QS_ITER_PIVOT_INSERT(qi, j, size, cmp);
+			num = i;
+		} else {
+			/* lower partition is smaller */
+			if (1 < i) (i < BRANCH) ? INSERT(base, i, size, cmp) : QS_ITER_PIVOT_INSERT(base, i, size, cmp);
+			base = qi;
+			num = j;
+		}
+	}
+}
+
+
+
+/* #################################################################################### */
+
+/* #################################################################################### */
 
 
 
