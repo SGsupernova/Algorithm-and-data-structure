@@ -5,6 +5,7 @@
 /* DEFINE */
 #define N_MAX_RECORDS 16
 #define MAX_BUF 300
+#define BRANCH 10
 
 /* function type define */
 typedef int _Cmpfun(const void *, const void *);

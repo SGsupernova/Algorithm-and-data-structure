@@ -3,7 +3,7 @@
 #include "my_stdlib.h"
 
 /* the sort that you use */
-#define qsort QS_REC
+#define qsort QS_REC_PIVOT_INSERT
 
 #define makeLine(i, n) if (!(i % n)) { printf("\n"); }
 
