@@ -45,7 +45,7 @@ void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 			char *q2 = qp;
 			size_t m, ms;
 
-			for (ms = size;0 < ms; 
+			for (ms = size; 0 < ms; 
 					ms -= m, q1 += m, q2 += m) {
 				m = ms < sizeof(buf) ? ms : sizeof(buf);
 				memcpy(buf, q1, m);
@@ -78,7 +78,7 @@ void INSERT(void * base, size_t num, size_t size, _Cmpfun* cmp) {
 
 	while (i-- > 0) {
 		max_loca = (char *)base + size * i;
-		
+
 		/* save the beginning element in temp_buf */
 		for (ms = size; 0 < ms; ms -= m, max_loca += m, temp_buf += m) {
 			m = ms < sizeof(temp_buf) ? ms : sizeof(temp_buf);
@@ -105,19 +105,71 @@ void INSERT(void * base, size_t num, size_t size, _Cmpfun* cmp) {
 			memcpy(max_loca, temp_buf, m);
 		}
 	}
+	free(temp_buf);
+}
+
+
+void QS_REC(void * base, size_t num, size_t size, _Cmpfun cmp) {
+	size_t i, j;
+	char * qi, * qj, * qp;
+
+	i = 0;
+	j = num - 1;
+	qi = (char *) base;
+	qj = qi + size * j;
+	qp = qj;
+
+	/* partition about pivot */
+	while (i < j) {
+		while (i < j && (*cmp) (qi, qp) <= 0)
+			i++, qi += size;
+		while (i < j && (*cmp) (qp, qj) <= 0)
+			--j, qj -= size;
+
+		if (i < j) {
+			char buf[MAX_BUF];
+			char *q1 = qi;
+			char *q2 = qj;
+			size_t m, ms;
+
+			/* swap as many as possible */
+			for (ms = size; 0 < ms;
+					ms -=m, q1 += m, q2 += m) {
+				m = ms < sizeof(buf) ? ms : sizeof(buf);
+				memcpy(buf, q1, m);
+				memcpy(q1, q2, m);
+				memcpy(q2, buf, m);
+			}
+		}
+	}
+
+	if (qi != qp) {
+		char buf[MAX_BUF];
+		char *q1 = qi;
+		char *q2 = qp;
+		size_t m, ms;
+
+		for (ms = size; 0 < ms; 
+				ms -= m, q1 += m, q2 += m) {
+			m = ms < sizeof(buf) ? ms : sizeof(buf);
+			memcpy(buf, q1, m);
+			memcpy(q1, q2, m);
+			memcpy(q2, buf, m);
+		}
+	}
+
+	j = num - i - 1, qi += size;
+	QS_ITER(qi, j, size, cmp);
+	QS_ITER(base, i, size, cmp);
 }
 
 /*
-   void QS_REC(void * base, size_t num, size_t size, _Cmpfun compar) {
-
-   }
-
-   void QS_REC_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun compar) {
+   void QS_REC_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun cmp) {
 
 
    }
 
-   void QS_ITER_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun compar) {
+   void QS_ITER_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun cmp) {
 
    }
    */

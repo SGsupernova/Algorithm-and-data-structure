@@ -3,9 +3,10 @@
 #include "my_stdlib.h"
 
 /* the sort that you use */
-#define qsort INSERT
+#define qsort QS_REC
 
 #define makeLine(i, n) if (!(i % n)) { printf("\n"); }
+
 int main(void) {
 	int i, n;
 	RECORD Array[N_MAX_RECORDS];

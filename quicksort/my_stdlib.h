@@ -27,6 +27,7 @@ void QS_ITER_PIVOT_INSERT(void *, size_t, size_t, _Cmpfun *);
 
 //void MY_BEST_SORT(void *, size_t, size_t, _Cmpfun *);
 
+int partition(void *, size_t, size_t, _Cmpfun*);
 int my_record_keys_compare(const void *, const void *);
 int my_unsigned_int_keys_compare(const void *, const void *);
 void init_RECORD_array(RECORD *, int);
