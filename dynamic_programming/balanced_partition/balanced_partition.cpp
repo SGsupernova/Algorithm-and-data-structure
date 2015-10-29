@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <cstdlib>
 
 int main () {
 	int test;
