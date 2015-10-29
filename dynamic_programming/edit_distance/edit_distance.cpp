@@ -1,8 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 
 #define get_min(a,b) ((a)>(b) ? (b):(a))
 #define diff(i, j) ((str_fir[i])!=(str_sec[j])? 1:0)
+#define MAX_BUF 4100
 
 int get_str(FILE * fp, char *str);
 
@@ -28,18 +29,18 @@ int main() {
 	fprintf(fp_output,  "%d\n", test);
 
 	while (test --) {
-		char str_fir[4100], str_sec[4100];
+		char str_fir[MAX_BUF], str_sec[MAX_BUF];
 		int len_fir, len_sec;
 
 		// actual length is get_str - 1, but we use length of string + 1
 		len_fir = get_str(fp_input, str_fir);
 		len_sec = get_str(fp_input, str_sec);
 		
-		int **entry_table = (int **) calloc(len_fir, sizeof(int*));
+		int **entry_table = new int *[len_fir];
 		int i, j;
 		
 		for (i = 0; i < len_fir; i++) {
-			entry_table[i] = (int *) calloc(len_sec, sizeof(int));
+			entry_table[i] = new int [len_sec];
 		}
 
 
@@ -69,17 +70,19 @@ int main() {
 
 	/* #################################################################### */
 		/* back trace */
-		int **data = (int **) calloc(entry_table[len_fir - 1][len_sec - 1], sizeof(int*));
-		int sol = entry_table[len_fir - 1][len_sec - 1], k = 0;
+		int sol = entry_table[len_fir - 1][len_sec - 1], k = 0,
+			** data = new int * [sol];
 
 		for (i = 0; i < sol; i++) {
-			data[i] = (int *) calloc(3, sizeof(int));
+			data[i] = new int [3];
 		}
 
 
 		fprintf(fp_output, "%d\n", sol);		// number of solution steps
 		i = len_fir - 1, j = len_sec - 1;
 		k = 0;
+
+		// priority : deletion > insertion > replacement
 		while (i && j) {
 			// deletion
 			if (entry_table[i - 1][j] < entry_table[i][j]) {
@@ -142,14 +145,14 @@ int main() {
 	/* #################################################################### */
 		/* free allocated memory */
 		for (i =0; i < sol; i++) {
-			free(data[i]);
+			delete [] data[i];
 		}
-		free(data);
+		delete [] data;
 
 		for (i = 0; i < len_fir; i++) {
-			free(entry_table[i]);
+			delete [] entry_table[i];
 		}
-		free(entry_table);
+		delete [] entry_table;
 	}
 
 	fclose(fp_input);
