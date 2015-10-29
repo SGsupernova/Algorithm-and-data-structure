@@ -2,7 +2,6 @@
 
 #define get_min(a,b) ((a)>(b) ? (b):(a))
 #define diff(i, j) ((str_fir[i])!=(str_sec[j])? 1:0)
-#define MAX_BUF 4100
 
 int get_str(FILE * fp, char *str);
 
@@ -28,7 +27,7 @@ int main() {
 	fprintf(fp_output,  "%d\n", test);
 
 	while (test --) {
-		char str_fir[MAX_BUF], str_sec[MAX_BUF];
+		char str_fir[4100], str_sec[4100];
 		int len_fir, len_sec;
 
 		// actual length is get_str - 1, but we use length of string + 1
