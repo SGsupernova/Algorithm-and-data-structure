@@ -25,14 +25,13 @@ int main () {
 	while (test --) {
 	/* ############################################################# */
 		/* get input and initialize */
-		int n, i, j, sum = 0, * list = NULL; /* n		: the number of elements
-												list	: input array
-												sum		: sum of array
-												i, j	: iterator
+		int n, i, j, sum = 0; /* n	: the number of elements
+							sum		: sum of array
+							i, j	: iterator
 											*/
 		fscanf(fp_input, "%d", &n); n++;
-
-		list = new int [n];
+		int * list = new int [n],
+			* parted_set = new int [n];
 
 		for (i = 1; i < n; i++) {
 			fscanf(fp_input, "%d", &list[i]);
@@ -41,7 +40,6 @@ int main () {
 		int floor = sum/2 + 1;
 		
 		bool **P = new bool *[n];
-
 		for (i = 0; i < n; i++) {
 			P[i] = new bool [floor];
 		}
@@ -49,7 +47,7 @@ int main () {
 		for (i = 0; i < n; i++) {
 			P[i][0] = true;
 		}
-		for (j = 0; j < floor; j++) {
+		for (j = 1; j < floor; j++) {
 			P[0][j] = false;
 		}
 
@@ -66,14 +64,40 @@ int main () {
 				}
 			}
 		}
-	
-		d
 
+
+	/* ############################################################# */
+		/* backtrace */
+		i = n - 1, j = floor;
+		while (!P[i][--j]);
+		
+		int diff = sum, len_fir = 0, low_bnd_sec = n;
+
+		while (i) {
+			if (list[i] <= j && P[i - 1][j - list[i]]) {
+					parted_set[len_fir++] = list[i];
+					j -= list[i];
+					diff -= 2 * list[i];
+			} else {
+				parted_set[--low_bnd_sec] = list[i];
+			}
+			i --;
+		}
+
+		diff = (diff < 0 ? -1 : 1) * diff;
+		fprintf(fp_output, "%d %d %d\n", diff, n - 1, len_fir);
+		for (i = len_fir - 1; i >= 0; i--) {
+			fprintf(fp_output, "%d\n", parted_set[i]);
+		}
+		for (i = low_bnd_sec; i < n; i++) {
+			fprintf(fp_output, "%d\n", parted_set[i]);
+		}
 
 	/* ############################################################# */
 		/* deallocate */
 
 		delete [] list;
+		delete [] parted_set;
 		for (i = 0; i < n; i++) {
 			delete[] P[i];
 		}
