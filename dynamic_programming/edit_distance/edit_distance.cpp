@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <cstdlib>
 
 #define get_min(a,b) ((a)>(b) ? (b):(a))
 #define diff(i, j) ((str_fir[i])!=(str_sec[j])? 1:0)
