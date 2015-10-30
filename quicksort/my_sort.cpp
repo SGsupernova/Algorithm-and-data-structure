@@ -3,6 +3,7 @@
 #include <string.h>
 #include "my_stdlib.h"
 #include <time.h>
+#include <ctime>
 
 void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 	size_t i, j;
@@ -432,6 +433,9 @@ void quick_sort_change_data(RECORD * array, RECORD2 *array2, RECORD *init_array,
 	void (*qsort[6]) (void *, size_t, size_t, _Cmpfun*) = {QS_ITER, QS_REC, QS_REC_PIVOT_INSERT, QS_ITER_PIVOT_INSERT, MY_BEST_SORT, INSERT};
 	const char * qsort_name[6] = {"QS_ITER", "QS_REC", "QS_REC_PIVOT_INSERT", "QS_ITER_PIVOT_INSERT", "MY_BEST_SORT", "INSERT"};
 
+	init_RECORD2_array(init_array2, n);
+	init_RECORD_array(init_array, n);
+
 	chk = -1;
 	/* sort ARRAY2(RECORD2) */
 	while (++chk < NUM_FUNC_CHECK) {
@@ -471,5 +475,51 @@ void quick_sort_change_data(RECORD * array, RECORD2 *array2, RECORD *init_array,
 			printf(" (0x%s, %d, [%u], 0%s, %d) ,", array[i].hexadecimal, array[i].dummy1[0], array[i].key, array[i].octal, array[i].dummy2[0]);
 		}
 		printf("\n\n");
+	}
+}
+
+void time_check(RECORD * array, RECORD2 *array2, RECORD *init_array, RECORD2 * init_array2) {
+	int i, n = N_MAX_RECORDS,j;
+	clock_t begin = clock(), end = clock();
+	double elapsed_secs[6] = {0, }; // double(end - begin) / CLOCKS_PER_SEC;
+	void (*qsort[6]) (void *, size_t, size_t, _Cmpfun*) = {QS_ITER, QS_REC, QS_REC_PIVOT_INSERT, QS_ITER_PIVOT_INSERT, MY_BEST_SORT, INSERT};
+	const char * qsort_name[6] = {"QS_ITER", "QS_REC", "QS_REC_PIVOT_INSERT", "QS_ITER_PIVOT_INSERT", "MY_BEST_SORT", "INSERT"};
+
+	/* RECORD2 */
+	i = AVERAGE_TIME_CHECK;
+	while (i--) {
+		init_RECORD2_array(init_array2, n);
+		for (j = 0; j < NUM_FUNC_CHECK; j++) {
+			memcpy(array2, init_array2, sizeof(RECORD2) * n);
+			begin = clock();
+			qsort[j](array2, n, sizeof(RECORD2), my_unsigned_int_keys_compare);
+			end = clock();
+			elapsed_secs[j] += double(end - begin) / CLOCKS_PER_SEC;
+		}
+	}
+	printf("**** RECORD2 elapsed seconds ****\n");
+	for (i = 0; i < NUM_FUNC_CHECK; i++) {
+		printf("%s : %lf\n", qsort_name[i], elapsed_secs[i] / AVERAGE_TIME_CHECK);
+	}
+
+
+	/* RECORD */
+	for (i = 0; i < NUM_FUNC_CHECK; i++) {
+		elapsed_secs[i] = 0.0;
+	}
+	i = AVERAGE_TIME_CHECK;
+	while(i--) {
+		init_RECORD_array(init_array, n);
+		for (j = 0; j < NUM_FUNC_CHECK; j++) {
+			memcpy(array, init_array, sizeof(RECORD) * n);
+			begin = clock();
+			qsort[j](array, n, sizeof(RECORD), my_record_keys_compare);
+			end = clock();
+			elapsed_secs[j] += double(end - begin) / CLOCKS_PER_SEC;
+		}
+	}
+	printf("**** RECORD elapsed seconds ****\n");
+	for (i = 0; i < NUM_FUNC_CHECK; i++) {
+		printf("%s : %lf\n", qsort_name[i], elapsed_secs[i] / AVERAGE_TIME_CHECK);
 	}
 }

@@ -1,13 +1,11 @@
-/* file name	: my_stdlib.h
- * Description	: setting type and declare functions
- * */
+/* Description	: setting type, definition and declare function */
 
 /* DEFINE */
-#define N_MAX_RECORDS 16
+#define N_MAX_RECORDS 8192
 #define MAX_BUF 300
-#define BRANCH 10
+#define BRANCH 8
 #define NUM_FUNC_CHECK 4
-
+#define AVERAGE_TIME_CHECK 5
 
 /* function type define */
 typedef int _Cmpfun(const void *, const void *);
@@ -37,3 +35,4 @@ void init_RECORD_array(RECORD *, int);
 void init_RECORD2_array(RECORD2 *, int);
 
 void quick_sort_change_data(RECORD *, RECORD2 *, RECORD *, RECORD2 *);
+void time_check(RECORD *, RECORD2 *, RECORD *, RECORD2 *);
