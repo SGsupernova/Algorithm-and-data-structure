@@ -1,10 +1,10 @@
 /* Description	: setting type, definition and declare function */
 
 /* DEFINE */
-#define N_MAX_RECORDS 8192
+#define N_MAX_RECORDS 65536
 #define MAX_BUF 300
-#define BRANCH 8
-#define NUM_FUNC_CHECK 4
+#define BRANCH 10
+#define NUM_FUNC_CHECK 5
 #define AVERAGE_TIME_CHECK 5
 
 /* function type define */
@@ -25,8 +25,6 @@ void INSERT(void *, size_t, size_t, _Cmpfun *);
 void QS_REC(void *, size_t, size_t, _Cmpfun *);
 void QS_REC_PIVOT_INSERT(void *, size_t, size_t, _Cmpfun *);
 void QS_ITER_PIVOT_INSERT(void *, size_t, size_t, _Cmpfun *);
-
-void MY_BEST_SORT(void *, size_t, size_t, _Cmpfun *);
 
 int partition(void *, size_t, size_t, _Cmpfun*);
 int my_record_keys_compare(const void *, const void *);

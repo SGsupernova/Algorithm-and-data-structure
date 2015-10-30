@@ -14,6 +14,7 @@ int main(void) {
 
 	n = N_MAX_RECORDS;
 
+
 	time_check(array, array2, init_array, init_array2);
 //	quick_sort_change_data(array, array2, init_array, init_array2);
 

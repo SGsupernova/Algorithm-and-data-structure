@@ -75,41 +75,25 @@ void QS_ITER(void * base, size_t num, size_t size, _Cmpfun * cmp) {
 void INSERT(void * base, size_t num, size_t size, _Cmpfun* cmp) {
 	int i = num - 1, j;
 	char *max_loca, *begin; //max_loca : the maximum location such that the element can move
-	char *temp_buf = (char*) calloc(MAX_BUF, sizeof(char));
-	size_t m, ms;
+	char *buf = new char [size];
 
 	while (i-- > 0) {
-		max_loca = (char *)base + size * i;
+		begin = (char *)base + size * (j = i);
 
-		/* save the beginning element in temp_buf */
-		for (ms = size; 0 < ms; ms -= m, max_loca += m, temp_buf += m) {
-			m = ms < sizeof(temp_buf) ? ms : sizeof(temp_buf);
-			memcpy(temp_buf, max_loca, m);
-		}
-		temp_buf -= size;
-
-		j = i;
-		while (++j < num && (*cmp)(temp_buf, max_loca) > 0) {
+		max_loca = begin + size;
+		while (++j < num && (*cmp)(begin, max_loca) > 0) {
 			max_loca += size;
 		}
 
 		/* base[i] is the smallest element in the subarray from i to n - 1 */
 		if (--j == i) continue;
-		max_loca -= size;
 
-		begin = (char *)base + size * i;
-
-		/* move the each element to left */
-		memcpy (begin, begin + size, size * (j - i));
-
-		for (ms = size; 0 < ms; ms -= m, max_loca += m, temp_buf += m) {
-			m = ms < sizeof(temp_buf) ? ms : sizeof(temp_buf);
-			memcpy(max_loca, temp_buf, m);
-		}
-		temp_buf -= size;
+		memcpy(buf, begin, size);
+		memcpy(begin, begin + size, size * (j - i));
+		memcpy(max_loca - size, buf, size);	
 	}
 
-	free(temp_buf);
+	delete [] buf;
 }
 
 
@@ -284,77 +268,8 @@ void QS_ITER_PIVOT_INSERT(void * base, size_t num, size_t size, _Cmpfun *cmp) {
 	}
 }
 
-void MY_BEST_SORT(void * base, size_t num, size_t size, _Cmpfun *cmp) {
-	size_t i = 0, j = num - 1, p;
-	char * qi, * qj, * qp;
-
-	while (1 < num) {
-		/* initialize the variables */
-		i = 0;
-		j = num - 1;
-		p = num/2;
-		qi = (char *) base;
-		qj = qi + size * j;
-		qp = qj + p * size;
-
-		/* partition about pivot */
-		while (i < j) {
-			while (i < j && (*cmp) (qi, qp) <= 0)
-				i++, qi += size;
-			while (i < j && (*cmp) (qp, qj) <= 0)
-				--j, qj -= size;
-
-			if (i < j) {
-				char buf[MAX_BUF];
-				char *q1 = qi;
-				char *q2 = qj;
-				size_t m, ms;
-
-				/* swap as many as possible */
-				for (ms = size; 0 < ms;
-						ms -=m, q1 += m, q2 += m) {
-					m = ms < sizeof(buf) ? ms : sizeof(buf);
-					memcpy(buf, q1, m);
-					memcpy(q1, q2, m);
-					memcpy(q2, buf, m);
-				}
-			}
-		}
-
-		if (i > p) {--i,qi += size;}
-
-		if (qi != qp) {
-			char buf[MAX_BUF];
-			char *q1 = qi;
-			char *q2 = qp;
-			size_t m, ms;
-
-			for (ms = size; 0 < ms; 
-					ms -= m, q1 += m, q2 += m) {
-				m = ms < sizeof(buf) ? ms : sizeof(buf);
-				memcpy(buf, q1, m);
-				memcpy(q1, q2, m);
-				memcpy(q2, buf, m);
-			}
-		}
-
-		j = num - i - 1;//qi += size;
-		if (j < i) {
-			/* recurse on smaller partition */
-			if (1 < j) (j < BRANCH) ? INSERT(qi, j, size, cmp) : QS_ITER_PIVOT_INSERT(qi, j, size, cmp);
-			num = i;
-		} else {
-			/* lower partition is smaller */
-			if (1 < i) (i < BRANCH) ? INSERT(base, i, size, cmp) : QS_ITER_PIVOT_INSERT(base, i, size, cmp);
-			base = qi;
-			num = j;
-		}
-	}
-}
-
 
 /* #################################################################################### */
-
 /* #################################################################################### */
 
 
@@ -428,10 +343,16 @@ void init_RECORD2_array(RECORD2 *data, int n) {
 }
 
 
+
+/* #################################################################################### */
+/* #################################################################################### */
+
+
+
 void quick_sort_change_data(RECORD * array, RECORD2 *array2, RECORD *init_array, RECORD2 * init_array2) {
 	int n = N_MAX_RECORDS, chk, i;
-	void (*qsort[6]) (void *, size_t, size_t, _Cmpfun*) = {QS_ITER, QS_REC, QS_REC_PIVOT_INSERT, QS_ITER_PIVOT_INSERT, MY_BEST_SORT, INSERT};
-	const char * qsort_name[6] = {"QS_ITER", "QS_REC", "QS_REC_PIVOT_INSERT", "QS_ITER_PIVOT_INSERT", "MY_BEST_SORT", "INSERT"};
+	void (*qsort[5]) (void *, size_t, size_t, _Cmpfun*) = {QS_ITER, QS_REC, QS_REC_PIVOT_INSERT, QS_ITER_PIVOT_INSERT, INSERT};
+	const char * qsort_name[5] = {"QS_ITER", "QS_REC", "QS_REC_PIVOT_INSERT", "QS_ITER_PIVOT_INSERT", "INSERT"};
 
 	init_RECORD2_array(init_array2, n);
 	init_RECORD_array(init_array, n);
@@ -481,9 +402,9 @@ void quick_sort_change_data(RECORD * array, RECORD2 *array2, RECORD *init_array,
 void time_check(RECORD * array, RECORD2 *array2, RECORD *init_array, RECORD2 * init_array2) {
 	int i, n = N_MAX_RECORDS,j;
 	clock_t begin = clock(), end = clock();
-	double elapsed_secs[6] = {0, }; // double(end - begin) / CLOCKS_PER_SEC;
-	void (*qsort[6]) (void *, size_t, size_t, _Cmpfun*) = {QS_ITER, QS_REC, QS_REC_PIVOT_INSERT, QS_ITER_PIVOT_INSERT, MY_BEST_SORT, INSERT};
-	const char * qsort_name[6] = {"QS_ITER", "QS_REC", "QS_REC_PIVOT_INSERT", "QS_ITER_PIVOT_INSERT", "MY_BEST_SORT", "INSERT"};
+	double elapsed_secs[5] = {0, }; // double(end - begin) / CLOCKS_PER_SEC;
+	void (*qsort[5]) (void *, size_t, size_t, _Cmpfun*) = {QS_ITER, QS_REC, QS_REC_PIVOT_INSERT, QS_ITER_PIVOT_INSERT, INSERT};
+	const char * qsort_name[6] = {"QS_ITER", "QS_REC", "QS_REC_PIVOT_INSERT", "QS_ITER_PIVOT_INSERT", "INSERT"};
 
 	/* RECORD2 */
 	i = AVERAGE_TIME_CHECK;
@@ -497,7 +418,7 @@ void time_check(RECORD * array, RECORD2 *array2, RECORD *init_array, RECORD2 * i
 			elapsed_secs[j] += double(end - begin) / CLOCKS_PER_SEC;
 		}
 	}
-	printf("**** RECORD2 elapsed seconds ****\n");
+	printf("\n\n**** RECORD2 elapsed seconds ****\n");
 	for (i = 0; i < NUM_FUNC_CHECK; i++) {
 		printf("%s : %lf\n", qsort_name[i], elapsed_secs[i] / AVERAGE_TIME_CHECK);
 	}
