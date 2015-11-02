@@ -4,8 +4,8 @@
 
 int main () {
 	int test;
-	FILE *fp_input = fopen("P1_input.txt", "r"),
-		 *fp_output = fopen("P1_output.txt", "w");
+	FILE *fp_input = fopen("P1_input.bin", "rb"),
+		 *fp_output = fopen("P1_output.bin", "wb");
 
 	if (fp_input == NULL) {
 		printf("ERROR : There is no file \"P2_input\" or  system-specific error code on failure\n");
@@ -20,24 +20,23 @@ int main () {
 		return -1;
 	}
 
-	fscanf(fp_input, "%d\n", &test);
-	fprintf(fp_output, "%d\n", test);
+	fread(&test, 4, 1, fp_input);
+	fwrite(&test, 4, 1, fp_output);
 
 	while (test --) {
 	/* ################################################################### */
 		/* initialize */
 		char str_fir[4100], str_sec[4100];
 		int len_fir, len_sec, i, j;
+		
+		fread(&len_fir, 4, 1, fp_input);
+		fread(&len_sec, 4, 1, fp_input);
+		
+		fread(str_fir + 1, 1, len_fir, fp_input);
+		fread(str_sec + 1, 1, len_sec, fp_input);
 
-		fscanf(fp_input, "%d %d",&len_fir, &len_sec);
 		len_fir ++, len_sec ++;
-		for (i = 1; i < len_fir; i++) {
-			fscanf(fp_input, "%c", &str_fir[i]);
-		}
-		for (i = 1; i < len_sec; i++) {
-			fscanf(fp_input, "%c", &str_sec[i]);
-		}
-	
+
 
 		int ** common = new int *[len_fir];
 		for (i = 0; i < len_fir; i++) {
@@ -62,7 +61,7 @@ int main () {
 			}
 		}
 
-		fprintf(fp_output, "%d\n",common[len_fir - 1][len_sec - 1]);
+		fwrite(&common[len_fir - 1][len_sec - 1], 4, 1, fp_output);
 
 
 	/* ################################################################### */
@@ -83,12 +82,11 @@ int main () {
 				i--,j--;
 			}
 		}
-
+	
+		fwrite(&k, 4, 1, fp_output);
 		for (i = k - 1; i >= 0; i--) {
-			fprintf(fp_output, "%c", lcs_array[i]);
+			fwrite(&lcs_array[i], 1, 1, fp_output);
 		}
-		fprintf(fp_output, "\n");
-
 	
 	/* ################################################################### */
 		/* deallocate */
