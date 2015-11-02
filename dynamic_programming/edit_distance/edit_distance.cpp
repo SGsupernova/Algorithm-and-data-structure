@@ -37,7 +37,7 @@ int main() {
 		int **entry_table = new int *[len_fir];
 		int i, j;
 		
-		for (i = 0; i < len_fir; i++) {
+		for (i = 0; i != len_fir; i++) {
 			entry_table[i] = new int [len_sec];
 		}
 
@@ -59,8 +59,8 @@ int main() {
 
 
 		/* build the entry_table */
-		for (i = 1; i < len_fir; i++) {
-			for (j = 1; j < len_sec; j++) {
+		for (i = 1; i != len_fir; i++) {
+			for (j = 1; j != len_sec; j++) {
 				entry_table[i][j] = get_min(entry_table[i - 1][j] + 1, get_min(entry_table[i][j - 1] + 1, entry_table[i -1][j - 1] + diff(i, j)));
 			}
 		}
@@ -71,7 +71,7 @@ int main() {
 		int sol = entry_table[len_fir - 1][len_sec - 1], k = 0,
 			** data = new int * [sol];
 
-		for (i = 0; i < sol; i++) {
+		for (i = 0; i != sol; i++) {
 			data[i] = new int [3];
 		}
 

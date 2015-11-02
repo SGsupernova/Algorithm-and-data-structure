@@ -39,19 +39,19 @@ int main () {
 
 
 		int ** common = new int *[len_fir];
-		for (i = 0; i < len_fir; i++) {
+		for (i = 0; i != len_fir; i++) {
 			common[i] = new int [len_sec];
 			common[i][0] = 0;
 		}
-		for (j = 0; j < len_sec; j++) {
+		for (j = 0; j != len_sec; j++) {
 			common[0][j] = 0;
 		}
 
 
 	/* ################################################################### */
 		/* compute */
-		for (i = 1; i < len_fir; i++) {
-			for (j = 1;j < len_sec; j++) {
+		for (i = 1; i != len_fir; i++) {
+			for (j = 1;j != len_sec; j++) {
 				if (str_fir[i] != str_sec[j]) {
 					common[i][j] = get_max(common[i - 1][j], common[i][j - 1]);
 				}
@@ -84,14 +84,14 @@ int main () {
 		}
 	
 		fwrite(&k, 4, 1, fp_output);
-		for (i = k - 1; i >= 0; i--) {
+		for (i = k - 1; i != -1; i--) {
 			fwrite(&lcs_array[i], 1, 1, fp_output);
 		}
 	
 	/* ################################################################### */
 		/* deallocate */
 		delete [] lcs_array;
-		for (i = 0; i < len_fir; i++) {
+		for (i = 0; i != len_fir; i++) {
 			delete [] common[i];
 		}
 		delete [] common;

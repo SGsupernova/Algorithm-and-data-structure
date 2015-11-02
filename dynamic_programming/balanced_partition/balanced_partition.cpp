@@ -32,29 +32,29 @@ int main () {
 		int * list = new int [n],
 			* parted_set = new int [n];
 
-		for (i = 1; i < n; i++) {
+		for (i = 1; i != n; i++) {
 			fscanf(fp_input, "%d", &list[i]);
 			sum += list[i];
 		}
 		int floor = sum/2 + 1;
 		
 		bool **P = new bool *[n];
-		for (i = 0; i < n; i++) {
+		for (i = 0; i != n; i++) {
 			P[i] = new bool [floor];
 		}
 
-		for (i = 0; i < n; i++) {
+		for (i = 0; i != n; i++) {
 			P[i][0] = true;
 		}
-		for (j = 1; j < floor; j++) {
+		for (j = 1; j != floor; j++) {
 			P[0][j] = false;
 		}
 
 	
 	/* ############################################################# */
 		/* compute */
-		for (i = 1; i < n; i++) {
-			for (j = 1; j < floor; j++) {
+		for (i = 1; i != n; i++) {
+			for (j = 1; j != floor; j++) {
 				if (list[i] <= j) {
 					P[i][j] = P[i - 1][j] || P[i - 1][j - list[i]];
 				}
@@ -85,10 +85,10 @@ int main () {
 
 		diff = (diff < 0 ? -1 : 1) * diff;
 		fprintf(fp_output, "%d %d %d\n", diff, n - 1, len_fir);
-		for (i = len_fir - 1; i >= 0; i--) {
+		for (i = len_fir - 1; i != -1; i--) {
 			fprintf(fp_output, "%d\n", parted_set[i]);
 		}
-		for (i = low_bnd_sec; i < n; i++) {
+		for (i = low_bnd_sec; i != n; i++) {
 			fprintf(fp_output, "%d\n", parted_set[i]);
 		}
 
