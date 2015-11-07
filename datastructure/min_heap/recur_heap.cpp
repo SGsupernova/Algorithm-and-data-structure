@@ -57,4 +57,33 @@ void pq_insert(priority_queue *q, int x) {
 
 int pq_delete(priority_queue *q) {
 	int min = INT_MIN;
+
+	if (q->n <= 0)
+		printf("Underflow error. INT_MIN is returned.\n");
+	else {
+		min = q->q[1];
+		q->q[1] = q->q[n];
+		q->n = q->n - 1;
+		bubble_down(q, 1);
+	}
+	return min;
+}
+
+void make_heap(priority_queue *q, int *s, int n) {
+	int i;
+
+	q->n = n;
+	for (i = 0; i < n; i++)
+		q->q[i + 1] = s[i];
+	
+	for (i = q->n / 2; i >= 1; i--)
+		bubble_down(q, i);
+}
+
+void make_heap_1(priority_queue *q, int *s, int n) {
+	int i;
+
+	pq_init(q);
+	for (i = 0; i < n; i++)
+		pq_insert(q, s[i]);
 }
