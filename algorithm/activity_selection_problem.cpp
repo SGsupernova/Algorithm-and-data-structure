@@ -1,6 +1,6 @@
 /* Maximum non-overlapping intervals */
 /* Greedy Algorithm */
-/* time complexity : O(n) */
+/* time complexity except sorting time : O(n) */
 #include <cstdio>
 #include <algorithm>
 
