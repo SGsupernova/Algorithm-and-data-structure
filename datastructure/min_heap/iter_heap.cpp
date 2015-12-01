@@ -16,6 +16,14 @@ void pq_swap(priority_queue *q, int i, int j) {
 void bubble_up(priority_queue *q, int p) {
 	int parent;
 
+	while (p > 1) {
+		parent = p / 2;
+		if (q->q[parent] > q->q[p]) {
+			pq_swap(q, parent, p);
+			p = parent;
+		}
+	}
+
 	if (p > 1) {
 		parent = p / 2;
 		if (q->q[parent] > q->q[p]) {

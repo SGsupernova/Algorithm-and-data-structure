@@ -17,22 +17,6 @@ element list[MAX_SIZE];
 	memcpy(&x, temp, sizeof(x)); \
 } while(0)
 
-void heapsort(element *, int);
-void adjust(element *, int, int);
-
-
-void heapsort(element list[], int n) 
-/* perform a heapsort on the array */
-{
-	int i, j;
-
-	for (i = n/2; i > 0; i--)
-		adjust(list, i, n);
-	for(i = n-1; i > 0; i--) {
-		SWAP(list[1], list[i+1]);
-		adjust(list, 1, i);
-	}
-}
 
 void adjust(element list[], int root, int n)
 /* adjust the binary tree to establish the heap */
@@ -57,4 +41,17 @@ void adjust(element list[], int root, int n)
 		}
 	}
 	list[child/2] = temp;
+}
+
+void heapsort(element list[], int n) 
+/* perform a heapsort on the array */
+{
+	int i, j;
+
+	for (i = n/2; i > 0; i--)
+		adjust(list, i, n);
+	for(i = n-1; i > 0; i--) {
+		SWAP(list[1], list[i+1]);
+		adjust(list, 1, i);
+	}
 }
