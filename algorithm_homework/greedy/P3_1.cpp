@@ -9,7 +9,7 @@ typedef struct _COORD{
 	int y;
 }COORD;
 
-bool cmp(COORD a, COORD b);
+int cmp(COORD a, COORD b);
 
 int main () {
 	FILE *input = fopen("H3P1_input.txt", "r"),
@@ -59,7 +59,7 @@ int main () {
 	return 0;
 }
 
-bool cmp(COORD a, COORD b) {
+int cmp(COORD a, COORD b) {
 	if (a.x != b.x)	return a.x < b.x;
 	else return a.y > b.y;
 }
