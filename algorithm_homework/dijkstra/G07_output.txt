@@ -1,0 +1,23 @@
+1. time(ms) : 113.379000
+2. the shortest path & total cost
+(1) vertex : 1
+Shortest path
+0
+2944
+1587
+724
+1
+cost : 8
+(2) vertex : 2
+Shortest path
+0
+500
+308
+2
+cost : 5
+(3) vertex : 3
+Shortest path
+0
+2944
+3
+cost : 5
