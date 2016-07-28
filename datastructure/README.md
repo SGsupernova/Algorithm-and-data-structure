@@ -14,15 +14,15 @@ http://www.cise.ufl.edu/~sahni/fdsc2ed/exerciseSolutions/2edfds1_8_8/index.html
 
 
 ## Contents
-Chapter1. Basic Concepts
-Chapter2. Arrays and Structures
-Chapter3. Stacks and Queues
-Chapter4. Linked Lists
-Chapter5. Trees
-Chapter6. Graphs
-Chapter7. Sorting
-Chapter8. Hashing
-Chapter9. Priority Queues
-Chapter10. Efficient Binary Search Trees
-Chapter11. Multiway Search Trees
+Chapter1. Basic Concepts<br/>
+Chapter2. Arrays and Structures<br/>
+Chapter3. Stacks and Queues<br/>
+Chapter4. Linked Lists<br/>
+Chapter5. Trees<br/>
+Chapter6. Graphs<br/>
+Chapter7. Sorting<br/>
+Chapter8. Hashing<br/>
+Chapter9. Priority Queues<br/>
+Chapter10. Efficient Binary Search Trees<br/>
+Chapter11. Multiway Search Trees<br/>
 Chapter12. Digital Search Structures
