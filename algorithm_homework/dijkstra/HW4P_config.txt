@@ -1,7 +1,0 @@
-G07_graph.txt
-G07_output.txt
-a
-0
-1
-2
-3
