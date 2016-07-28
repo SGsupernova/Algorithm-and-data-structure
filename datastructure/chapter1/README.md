@@ -1,9 +1,9 @@
 # Basic Concepts
 1.1 Overview:System Life Cycle<br/>
 1.2 Pointers and Dynamic Memory Allocation<br/>
--  1.2.1 Pointers<br/>
--  1.2.2 Dynamic Memory Allocation<br/>
--  1.2.3 Pointers Can Be Dangerous<br/>
+  1.2.1 Pointers<br/>
+  1.2.2 Dynamic Memory Allocation<br/>
+  1.2.3 Pointers Can Be Dangerous<br/>
 1.3 Algorithm Specification<br/>
 - 1.3.1 Introduction<br/>
 -	1.3.2 Recursive Algorithms<br/>
