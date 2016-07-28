@@ -1,0 +1,28 @@
+# Fundamentals of Data Structures in C (2nd Edition) : Horowitz, Sahni, anderson-freed
+The summary and addtion of book
+  
+## Preface
+**Why Fundamentals of Data Structures in c ?**<br />
+1. C has become the main development language both on PC as well as on UNIX-based workstations<br/>
+2. The quality of C compilers and C programming development environments has improved to the point where it makes sense to provide instruction to beginners in a C environment.<br/>
+3. Many of the concepts that need to be taught in the programming systems areas of computer science, such as virtual memory, file systems, automatic parser generators, lexical analyzers, networking, etc, are implemented in C. Thus, instructions are now teaching students C early in their academic life so that these concepts can be fully explored later on.
+
+**The URL that contains useful material related to the content of this book**<br/>
+http://www.cise.ufl.edu/~sahni/fdsc2ed/
+**The solution URL**<br/>
+http://www.cise.ufl.edu/~sahni/fdsc2ed/exerciseSolutions/2edfds1_8_8/index.html
+
+
+## Contents
+Chapter1. Basic Concepts
+Chapter2. Arrays and Structures
+Chapter3. Stacks and Queues
+Chapter4. Linked Lists
+Chapter5. Trees
+Chapter6. Graphs
+Chapter7. Sorting
+Chapter8. Hashing
+Chapter9. Priority Queues
+Chapter10. Efficient Binary Search Trees
+Chapter11. Multiway Search Trees
+Chapter12. Digital Search Structures
