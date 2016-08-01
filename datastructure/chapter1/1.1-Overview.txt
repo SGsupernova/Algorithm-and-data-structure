@@ -1,0 +1,66 @@
+1.1 Overview:System Life Cycle
+
+(In text)
+
+We believe that a solid foundation in data abstraction, algorithm specification, and performance analysis and measurement provides the necessary methodology. 
+In this chapter, we will discuss each of these areas in detail.
+However, before we begin we want to place these tools in a context that views programming as more than writing code 
+Good programmers regard large-scale computer programs as systems that contain many complex interacting parts. As systems, these programs undergo a development process called the system life cycle.
+We consider this cycle as consisting of requirements, analysis, design, coding, and verification phases. Although we will consider them separately, these phases are highly  interrelated and follow only a very crude sequential time frame.
+
+
+(1) Requirements.
+All large programming projects begin with a set of specifications that define the purpose of the project.
+These requirements describe the information that we, the programmers, are given (input) and the results that we must produce (output).
+Frequently the initial specifications  are defined vaguely, and we must develop rigorous input and output descriptions that include all cases.
+
+
+(2) Analysis.
+Breake the problem down into manageable pieces. 
+There are two approaches to analysis: bottom-up and top-down
+
+* Bottom-up
+The bottom-up approach is an older, unstructured strategy that places an early emphasis on the coding fine points.
+Since the programmer does not have a master plan for the project, the resulting program frequently has many loosely connected, error-ridden segments.
+Bottom-up analysis is akin to construction a building from a generic blueprint. We view all buildings identically.
+
+* Top-down
+The top-down approach begins with the purpose that the program will serve and uses this end product to divide the program into manageable segments.
+
+
+(3) Design.
+The designer approaches the system from the perspectives of both the data objects that the program needs and the operations performed on them.
+
+The First perspective leads to the creation of abstract data types, while the second requires the specification of algorithms and a consideration of algorithm design strategies.
+Since the abstract data types and the algorithm specifications are language-independent, we postpone implementation decisions. Although we must specify the information required for each data object, we ignore coding details.
+We not only create a system that could be written in several programming languages, but we also have time to pick the most efficient implementations within our chosen language.
+
+
+(4) Refinement and coding.
+In this phase, we choose representations for our data objects and write algorithms for each operation on them.
+The order in which we do this is crucial because a data object's representation can determine the efficiency of the algorithms releated to it. Typically this means that we should write those algorithms that are independent of the data objects first.
+If we must scrap our work entirely, we can take comfort in the fact that we will be able to write the new system more quickly and with fewer errors.
+
+
+(5) Verification.
+This phase consists of developing correctness proofs for the program, testing the program with a variety of input data, and removing errors.
+
+* Correctness proofs
+Programs can be proven correct using the same techniques that abound in mathematics. (Unfortunately, these proofs are very time-consuming, and difficult to develop for large projects.)
+Selecting algorithms that have been proven correct can reduce the number of errors.
+In this text, we will provide you with an arsenal of algorithms, some of which have been proven correct using formal techniques, that you may apply to many programming problems.
+
+* Testing
+Testing requires the working code and sets of test data. This data should be developed carefully so that it includes all possible scenarios.
+Little thought is given to the input data, and usually only one set of data is used.
+If our program contains a switch statement, our test should be chosen so that we can check each case within the switch statement.
+
+Initial system tests focus on verifying that a program runs correctly. 
+While this is a crucial concern, a program's running time is also important.
+Theoretical estimates of running time exist for many algorithms and we will derive these estimates as we introduce new algorithm.
+Constructing timing tests is also a topic that we pursue later in this chapter.
+
+* Error removal
+If done properly, the correctness proofs and system tests will indicate erroneous code. The ease with which we can remove these errors depends on The Design and Coding decisions made earlier.
+A large undocumented program written in "spaghetti" code is a programmer's nightmare.
+When debugging such programs, each corrected error possibly generatesseveral new errors. On the other hand, debugging a well-documented program that is divided into autonomous units that interact through parameters is far easier.

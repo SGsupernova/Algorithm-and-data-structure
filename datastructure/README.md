@@ -1,6 +1,7 @@
 # Fundamentals of Data Structures in C (2nd Edition) : Horowitz, Sahni, anderson-freed
 The summary and addtion of book
-  
+This repository summarizes "Fundamentals of Data Structures in c" just for me. This content of the summary can be loosely connected. So I recommend that you read this book.
+
 ## Preface
 **Why Fundamentals of Data Structures in c ?**<br />
 1. C has become the main development language both on PC as well as on UNIX-based workstations<br/>
