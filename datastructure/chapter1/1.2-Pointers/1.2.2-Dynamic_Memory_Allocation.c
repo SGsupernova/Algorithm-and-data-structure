@@ -18,6 +18,8 @@ int main() {
 	pi = (int *) malloc(sizeof(int));
 	pf = (float *) malloc(sizeof(float));
 
+
+
 	*pi = 1024;
 	*pf = 3.14;
 
@@ -26,4 +28,34 @@ int main() {
 	free(pf);
 
 	return 0;
+}
+
+{
+	/* Since there is the possibility that a call to malloc may fail for lack of sufficient memory,
+	 * we can write a more robust version of Program. */
+	if ((pi = (int*)malloc(sizeof(int))) == NULL || 
+		(pf = (float*)malloc(sizeof(float))) == NULL)
+	{
+		fprintf(stderr, "Insufficient memory");
+		exit(EXIT_FAILURE);
+	}
+	// or
+	if (!(pi = malloc(sizeof(int))) || 
+		!(pf = malloc(sizeof(float))))
+	{
+		fprintf(stderr, "Insufficient memory");
+		exit(EXIT_FAILURE);
+	}
+}
+
+/* Since malloc may be invoked from several places in your program, it is often convenient to define a macro that invokes malloc and exits when malloc fails.
+ * A possible macro definition is : */
+#define MALLOC(p,s) \
+	if (!((p) = malloc(s))) { \
+		fprintf(stderr, "Insufficient memory"); \
+		exit(EXIT_FAILURE); \
+	}
+{
+	MALLOC(pi, sizeof(int));
+	MALLOC(pf, sizeof(float));
 }
