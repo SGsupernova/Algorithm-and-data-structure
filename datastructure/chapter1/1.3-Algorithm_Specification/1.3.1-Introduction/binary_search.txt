@@ -1,0 +1,13 @@
+Binary search
+
+Assume that we have n >= 1 distinct integers that are already sorted and stored in the array list. That is, list[0] <= list[1] <= ... <= list[n - 1].
+We must configure out if an integer searchnum is in this list.
+   - If it is, we should return an index, such that list[i] = searchnum.
+   - If searchnum is not present, we should return -1.
+
+Let left and right, respectively, denote the left and right ends of the list to be searched. Initially, left = 0 and right = n- 1.
+Let middle = (left + right)/2 be the middle position in the list.
+If we compare list[middle] with searchnum, we obtain one of three results.
+   (1) searchnum < list[middle] : If searchnum is present, it must be in the positions between 0 and middle - 1. Therefor, we set right to middle - 1. (right = middle - 1)
+   (2) searchnum = list[middle] : We return middle.
+   (3) searchnum > list[middle] : If searchnum is present, it must be in the positions between middle + 1 and n - . So we set left to middle + 1. (left = middle +1)

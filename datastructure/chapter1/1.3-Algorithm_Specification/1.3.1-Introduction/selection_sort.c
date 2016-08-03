@@ -54,7 +54,7 @@ void swap (int *x, int *y)
 	*y = temp;		/* places the contents of temp in location pointed to by y */
 }
 
-void sort(int list[], int n)
+void sort(int list[], int n) // Selection sort
 {
 	int i, j, min, temp;
 	for (i = 0; i < n - 1; i++) {
