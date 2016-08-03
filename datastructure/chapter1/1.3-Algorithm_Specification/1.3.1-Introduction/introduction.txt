@@ -1,0 +1,18 @@
+Algorithms exist for many common problems, and designing efficient algorithms plays a crucial role in developing large-scale computer systems.
+
+Definition : An algorithm is a finite set of instructions that, if followed, accomplishes a particular task. In addition, all algorithms must  satisfy the following criteria:
+
+(1) Input : There are zero or more quantities that are externally supplied.
+(2) Output : At least one quantity is produced.
+(3) Definiteness : Each instruction is clear and unambiguous.
+(4) Finiteness : If we trace out the instructions of an algorithm, then for all cases, the algorithm terminates after a finite number of steps.
+(5) Effectiveness : Every instruction must be basic enough to be carried out, in principle, by a person using only pencil and paper. It is not enough that each operation
+
+In computational theory,
+   one distinguishes between an algorithm and a program, the latter of which does not have to satisfy the fourth condition(Finiteness).
+   Example : We can think of an operating system that continues in a wait loop until more jobs are entered. Such a program does not terminate unless the system crashes.
+
+We can describe an algorithm in many ways.
+	- We can use a natural lagnuage like English, although, if we select this option, we must make sure that the resulting instructions are definite.
+	- Graphic representations called flowcharts are another possibility, but they work well only if the algorithm is small and simple.
+	In this text we will present most of our algorithms in c, occasionally resorting to a combination of English and C for our specifications.
