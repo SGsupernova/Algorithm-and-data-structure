@@ -1,0 +1,6 @@
+Function sort correctly sorts a set of n >= 1 integers. (nondecreasing)
+
+Proof : When the outer for loop completes its iteration for i = q, we have list[q] <= list[r], q < r < n.
+		Further, on subsequent iterations, i > q and list[0] through list[q] are unchanged. 
+		Hence following the last iteration of the outer for loop(i.e., i = n - 2), we have list[0] <= list[1] <= ... <= list[n - 1].
+
