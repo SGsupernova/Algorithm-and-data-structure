@@ -1,0 +1,8 @@
+ Two types of recursion
+direct recursion	: A function calls itself.
+indirect recursion	: Functions call other functions that invoke the calling function again.
+
+* Recursive Mechanism are not only extremely powerful, but they also frequently allow us to express an otherwise complex process in very clear terms.
+* Any function that we can write using assignment, if-else, and while statements can be written recursively.
+
+We would like to use two examples to show you how to develop a recursive algorithm.
