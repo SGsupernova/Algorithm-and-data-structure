@@ -19,3 +19,28 @@ ADT NaturalNumber is
 								       else return INT_MAX
 		NaturalNumberSubtract(x,y)	:= if (x<y) return 0
 									   else return x - y
+end NaturalNumber
+
+The symbols ":=" should be read as "is defined as"
+
+The ADT definition begins with the name of the ADT. There are two main sections in the definition:
+the objects and the functions.  The objects are defined are defined in terms of the integers, but we
+make no explicit reference to their representation. The function definitions are a bit more
+complicated. First, the definitions use the symbols x and y to denote two elements of data type.
+In addtion, the definition makes use of functions that are defined on the set of integers, namely,
++,-,=, and <=. This is an indication that in order to define one data type, we may need to use
+operations from another data type. For each function, we place the result type to the left of the
+function name and a definition of the function to the right.
+
+Zero()							: constructor function
+Successor(), Add(), Subtract()	: transformer functions
+
+
+In most of our further examples, the function definitions will not be so close to C functions. 
+In fact, the nature of an ADT argues that we avoid implementation details. Therefore, we will
+usually use a form of structured English to explain the meaning of the functions. Often, there will
+be a discrepency even between the number of parameters used in the ADT definition of a function and
+its C implementation. To avoid confusion between the ADT definition of a function and its C
+implementation, ADT names begin with an upper case letter while C names begin with a lower case
+letter.
+
