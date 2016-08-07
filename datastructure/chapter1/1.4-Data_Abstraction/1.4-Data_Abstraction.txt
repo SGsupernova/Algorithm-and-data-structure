@@ -16,9 +16,16 @@ For example, Ada has a concept called a package, and C++ has a concept called a 
 * How does the specification of the operation of an ADT differ from the implementation of the operations?
 The specification consists of the names of every function, the type of its arguments, and the type of its result. 
 There should also be a description of what the function does, but without appealing to internal representation or implementation details.
-This requirement is quite quite important, and 
-	it implies that an abstraction data type is Implementation-Independent.
-Furthermore, it is possible to classify the functions of data type into several categories:
+This requirement is quite quite important, and it implies that an abstraction data type is
+Implementation-Independent. Furthermore, it is possible to classify the functions of data type into several categories:
 (1) Creator/constructor : These functions create a new instance of the designated type.
-(2) Transformers :	These functions also create an instance of the designated type, generally by using one or more other instances. 
-					The difference between 
+(2) Transformers :	These functions also create an instance of the designated type, generally by
+		using one or more other instances. The difference between constructors and transformers will become
+		more clear with some examples.
+(3) Observers/reporters : These functions provide information about an instance of the type, but
+		they do not change the instance.
+Typically, an ADT definition will include at least one function from each of these three categories.
+
+Throughout this thext, we will emphasize the distinction between specification and implementation.
+In order to help use do this, we will typically begin with an ADT definition of the object that we
+intend to study.

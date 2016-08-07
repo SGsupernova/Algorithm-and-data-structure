@@ -1,0 +1,21 @@
+Example 1.5 Abstract data type [NaturalNumber]
+At this is the first example of an ADT, we will spend some time explaining the notation.
+
+ADT NaturalNumber is
+	objects : an ordered subrange of the starting at zero and ending at the maximum integer
+	(INT_MAX) on the computer.
+	functions :
+		for all x, y in NaturalNumber; TRUE, FALSE in Boolean
+		and where +, -, < and == are the usual integer operations
+
+		NaturalNumberZero( )		:= 0
+		BooleanIsZero(x)			:= if (x) return FALSE
+									   else return TRUE
+		BooleanEqual(x,y)			:= if (x==y) return TRUE
+									   else return FALSE
+		NaturalNumberSuccessor(x)		:= if (x==INT_MAX) return x
+								       else return x + 1
+		NaturalNumberAdd(x,y)		:= if ((x+y) <= INT_MAX)
+								       else return INT_MAX
+		NaturalNumberSubtract(x,y)	:= if (x<y) return 0
+									   else return x - y
