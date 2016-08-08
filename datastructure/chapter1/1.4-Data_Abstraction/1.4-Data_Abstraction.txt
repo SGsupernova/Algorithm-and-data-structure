@@ -1,27 +1,33 @@
-All programming languages provide at least a minimal set of predefined data types, plus the ability to construct new, or user-defined types.
---> "What is a data type?"
+All programming languages provide at least a minimal set of predefined data types, plus the ability
+to construct new, or user-defined types. --> "What is a data type?"
 
 Definition : A data type is a collection of objects and a set of operations that act on those objects.
 
-For example, the data type int consists of objects {0, +1, -1, +2, -2, ..., INT_MAX, INTMIN }.
-	The operations on integers are many and would certainly include the arithmetic operators +,-,*,/, and %.
+For example, the data type int consists of objects {0, +1, -1, +2, -2, ..., INT_MAX, INTMIN }. The
+operations on integers are many and would certainly include the arithmetic operators +,-,*,/, and
+%.
 
 
-Definition : An abstract data type(ADT) is a data type that is organized in such a way that the specification of the objects and the specification of the operations on the objects is separated from the representation of the objects and the implementation of the operations.
+Definition : An abstract data type(ADT) is a data type that is organized in such a way that the
+specification of the objects and the specification of the operations on the objects is separated
+from the representation of the objects and the implementation of the operations.
 
-Some programming languages provide explicit mechanisms to support the distinction between specification and implementation.
-For example, Ada has a concept called a package, and C++ has a concept called a class. Both of these assis the programmer in implementing abstract data types.
+Some programming languages provide explicit mechanisms to support the distinction between
+specification and implementation.
+For example, Ada has a concept called a package, and C++ has a concept called a class. Both of these
+assis the programmer in implementing abstract data types.
 
 
 * How does the specification of the operation of an ADT differ from the implementation of the operations?
-The specification consists of the names of every function, the type of its arguments, and the type of its result. 
-There should also be a description of what the function does, but without appealing to internal representation or implementation details.
-This requirement is quite quite important, and it implies that an abstraction data type is
-Implementation-Independent. Furthermore, it is possible to classify the functions of data type into several categories:
+The specification consists of the names of every function, the type of its arguments, and the type
+of its result.  There should also be a description of what the function does, but without appealing
+to internal representation or implementation details. This requirement is quite quite important, and
+it implies that an abstraction data type is Implementation-Independent. Furthermore, it is possible
+to classify the functions of data type into several categories: 
 (1) Creator/constructor : These functions create a new instance of the designated type.
 (2) Transformers :	These functions also create an instance of the designated type, generally by
-		using one or more other instances. The difference between constructors and transformers will become
-		more clear with some examples.
+		using one or more other instances. The difference between constructors and transformers will
+		become more clear with some examples.
 (3) Observers/reporters : These functions provide information about an instance of the type, but
 		they do not change the instance.
 Typically, an ADT definition will include at least one function from each of these three categories.

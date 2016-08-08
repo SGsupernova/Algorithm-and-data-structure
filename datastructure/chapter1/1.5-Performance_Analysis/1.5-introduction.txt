@@ -1,0 +1,31 @@
+One of the goals of this book is to develop your skills for making evaluative judgements about
+programs. there are many criteria upon which we can judge a program, including:
+(1) Does the program meet the original specifications of the task?
+(2) Does it work correctly?
+(3) Does the program contain documentation that shows how to use it and how works?
+(4) Does the program effectively use functions to create logical units?
+(5) Is the program's code readable?
+
+Although the above criteria are vitally important, particularly in the development of large systems,
+it is difficult to explain how to achieve them. The criteria are associated with the development of
+a good programming style and this takes experience and practice. However, we also can judge a
+program on more concrete criteria, and so we add two more criteria to our list.
+
+(6) Does the program efficiently use primary and secondary storage?
+(7) Is the program's running time acceptable for the task?
+
+These criteria focus on performance evaluation, which we can loosely divide into two distinct
+fields. 
+* performance analysis : The first field focuses on obtaining estimates of time and space that are
+machine indepedent. But this field's subject matter is the heart of an important branch of computer
+science known as complexity theory.
+* performance measurement : The second field obtains machine-dependent running times. These times
+* are used to identify inefficient code segments.
+
+In this section we discuss performance analysis, and in the next we discuss performance measurement.
+We begin our discussion with definitions of the space and time complexity of a program.
+
+
+Definition : The space complexity of a program is the amount of memory that is needs to run to
+completion. The time complexity of a program is the amount of computer time that it needs to run to
+completion.
