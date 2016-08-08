@@ -1,0 +1,26 @@
+The space needed by a program is the sum of the following components:
+(1) Fixed space requirements : This components refers to space requirements that do not depend on
+the number and size of the program's inputs and outputs. The fixed requirements include the
+instruction space (space needed to store the code), space for simple variables, fixed-size
+structured variables (such as structs), and constants.
+
+(2) Variable space requirements : This component consists of the space needed by structured
+variables whose size depends on the particular instance, I, of the problem being solved. The
+variable space requirement of a program P working on an instance I is denoted Sp(I). Sp(I) is
+usually given as a function of some characteristics of the instance I. Commonly used characteristics
+include the number, size, and values of the inputs and outputs associated with I.
+ex) If our input is an array containing n numbers, then n is an instance characteristic.
+If n is the only instance characteristic we wish to use when computing Sp(I), we will use Sp(n) to
+represent Sp(I).
+
+We can express the total space requirement S(P) of any program as:
+					S(P) = c + Sp(I)
+	where c is a constant representing the fixed space requirements. When analyzing the space
+complexity of a program we are usualy concerned with only the variable space requirements.
+
+float abc(float a, float b, float c)
+{
+	return a+b+b*c+(a+b-c) + 4.00;
+}
+This function has only fixed space requirements. Therefore, Sabc(I) = 0.
+
