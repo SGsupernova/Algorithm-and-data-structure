@@ -1,0 +1,74 @@
+The time, T(P), take by a program, P, is the sum of its compile time and its run(or execution) time.
+The compile time is similar to the fixed space component since it does not depend on the instance
+characteristic. In addition, once we have verified that the program runs correctly, we may run it
+many times without recompilation.
+Consequently, we are really concerned only with the program's execution time, Tp.
+
+Determining Tp is not an easy task because because it requires a detailed knowledge of the
+compiler's attributes. (That is, we must know how the  compiler translates our source program into
+object code.) 
+For example, suppose we have a simple program that adds and subtracts numbers. Let N denote the
+instance characteristic. We might express Tp(n) as:
+	Tp(n) = CaAdd(n) + CsSub(n) + ClLDA(n) + CstSTA(n)
+where Ca, Cs, Cl, Cst, are constants that refer to the time needed to perform each operation, and
+ADD, SUB, LDA, STA, are the number of addition, subtraction, loads, and stores that are performed
+when the program is run with instance characteristic n.
+
+Obtaining such a detailed estimate of running time is rarely worth the effort. If we must know the
+running time, the best approach is to use the system clock to time the program. Alternately, we
+could count the number of operations the program performs. This gives us a machine-independent
+estimate, but we must know how to divide the program into distinct steps.
+
+
+Definition : A program step is a syntactically or semantically meaningful program segment whose
+execution time is independent of the instance characteristics.
+
+
+
+[Example. Iterative summing of a list of numbers]
+
+float sum(float list[], int n)
+{
+	float tempsum = 0; count ++; /* for assignment */
+	int i;
+	for (i = 0; i < n; i++) {
+		count ++; /* for the for loop */
+		tempsum += list[i]; count++; /* for assignment */
+	}
+	count ++; /* last execution of for */
+	count ++; /* for return */ return tempsum;
+}
+
+We want to obtain the step count for the sum function. Since our chief concern is determining the
+final count, we can eliminate most of th eprogram statements from above program. We can see that if
+count's initial value is 0, its final value will be 2n + 3. Thus, each invocation of sum executes a
+total of 2n + 3 steps.
+
+float sum(float list[], int n)
+{
+	float tempsum = 0;
+	int i;
+	for (i = 0; i < n; i++)
+		count += 2;
+	count += 3;
+	return 0;
+}
+
+
+To construct a step count table we first determine the step count for each statement. We call this
+the steps count table we first determine the step count for each statement. We call this the
+steps/execution, or s/e for short.
+Next we figure out the number of times that each statement is executed. We call this the frequency.
+The frequency of a nonexecutable statement is zero.
+
+		Statement 					| s/e 	Frequency 	Total steps
+float sum(float list[], int n)		|  0 		0 			0
+{									|  0 		0 			0
+	float tempsum = 0;				|  1 		1 			1 	*
+	int i;							|  0 		0 			0
+	for (i = 0; i < n; i++) 		|  1 		n+1 		n+1 *
+		tempsum += list[i];			|  1 		n 			n 	*
+	return tempsum;					|  1 		1 			1 	*
+}									|  0 		0 			0
+Total 														2n+3
+

@@ -18,9 +18,31 @@ We can express the total space requirement S(P) of any program as:
 	where c is a constant representing the fixed space requirements. When analyzing the space
 complexity of a program we are usualy concerned with only the variable space requirements.
 
+[Example 1]
+
 float abc(float a, float b, float c)
 {
 	return a+b+b*c+(a+b-c) + 4.00;
 }
 This function has only fixed space requirements. Therefore, Sabc(I) = 0.
 
+
+[Example 2]
+
+float sum(float list[], int n)
+{
+	float tempsum = 0;
+	int i;
+	for (i = 0; i < n; i++)
+		tempsum += list[i];
+	return tempsum;
+}
+
+Although the output is a simple value, the input includes an array. Therefore, the variable space
+requirement depends on how the array is passed into the function. 
+- Programming languages like Pascal may pass arrays by value. This means that the entire array is
+	copied into temporary storage before the function is executed. In these languages, the variable
+	space requirement for this program is Ssum(I) = Ssum(n) = n, where n is the size of the array.
+- C passes all paramters by value. When an array is passed as an argument to a function, C
+	interprets it as passing the address of the first element of the array. C does not copy the array.
+	Therefore, Ssum(n) = 0;
