@@ -1,0 +1,7 @@
+Determining the exact step count (either wort case or average) of a program can prove to be an
+exceedingly difficult task. Expanding immense effort to determine the step count exactly isn't a
+very worthwhile endeavor as the notion of a step is itself inexact. (Both the intrcutions x = y and
+		x = y + z + (a/b) + 51555).
+Something like, "it's about 80n, or 85n, or 75n," is adequate to arrive at the same conclusion.
+
+For the most
