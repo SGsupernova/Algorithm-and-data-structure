@@ -1,0 +1,20 @@
+Type ctrl+v and
+
+subscript : u2081 (subscript 1 / ₁) , u2082 (subscript 2)
+superscript : u00b2 (superscript 2 / ²)
+
+
+or
+
+Type ctrl+k
+plus minus ± : +-
+Omega Ω : W*
+subscript zero : 0s
+superscript zero : 0S
+
+
+Reference : http://www.alecjacobson.com/weblog/?p=443
+			http://vim.wikia.com/wiki/Entering_special_characters
+			http://vimdoc.sourceforge.net/htmldoc/digraph.html
+
+Seaching "Vim digraph table"

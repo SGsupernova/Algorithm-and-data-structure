@@ -1,7 +1,26 @@
 Determining the exact step count (either wort case or average) of a program can prove to be an
 exceedingly difficult task. Expanding immense effort to determine the step count exactly isn't a
 very worthwhile endeavor as the notion of a step is itself inexact. (Both the intrcutions x = y and
-		x = y + z + (a/b) + 51555).
-Something like, "it's about 80n, or 85n, or 75n," is adequate to arrive at the same conclusion.
+		x = y + z + (a/b) + 51555). Something like, "it's about 80n, or 85n, or 75n," is adequate to
+arrive at the same conclusion.
 
-For the most
+No matter what the value of c₁, c₂, and c₃, there will be an n beyond which the program with
+complexity c₃n will be faster than the one with complexity c₁n² + c₁n. This value of n will
+be called the break even point. If the break even point is 0, then the program with complexity c3*n
+is always fater(or at least as fast). The exact break even point cannot be determined analytically.
+The programs have to be run on a computer in order to determine the break even point. There is
+little advantage in determining the exact values of c₁, c₂, and c₃.
+
+In this remainder of this chapter, the functions f and g are nonnegative functions.
+
+Definition : [Big "oh"] f(n) = O(g(n))	(read as "f of n is big oh of g of n") iff
+			there exist positive constants c and n₀ such that 
+			f(n) ≤ cg(n) for all n ≥ n₀.
+
+Definition : [Omega] f(n) = Ώ(g(n))		(read as "f of n is omega of g of n") iff
+			there exists positive constants c and n₀ such that 
+			f(n) ≥ cg(n) for all n ≥ n₀.
+
+Definition : [Theta] f(n) = Θ(g(n))		(read as "f of n is theta of g of n") iff
+			there exists positive constants c₁,c₂, and n₀ such that
+			c₁g(n) ≤ f(n) ≤ c₂g(n) for all n ≥ n₀.
