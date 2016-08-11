@@ -1,0 +1,35 @@
+Althogh performance analysis gives us a powerful tool for assessing an algorithm 's space and time
+complexity and time complexity, at some point we also must consider how the algorithm executes on
+our machine.
+
+The functions we need to time events are part of C's standard library, and are accessed through the
+statement: #include <time.h>.
+
+
+					Method 1					Method2
+Starting timing		start = clock();			start = time(NULL);
+Stop timing			stop = clock();				stop  = time(NULL);
+Type returned		clock_t						time_t
+Result in seconds	duration =					duration = 
+					((double)(stop - start))/	(double) difftime(stop, start);
+					CLOCKS_PER_SEC
+
+
+
+Method 1 uses clock to time events. This function gives the amount of processor time that has
+elapsed since the program began running. To time an event we use clock twice, once at the start of
+the event and once at the end. The time is returned as a built-in type, clock_t. The total time
+required by an event is
+	Total time = stop time - start time
+Since the result could be any legitimate numeric type, we type cast it to double. In addition, since
+this result is measured as internal processor time, we must divide it by the number of clock ticks
+per second to obtain the result in seconds. IN ANSI C, the ticks per second is held in the built-in
+constant, CLOCKS_PER_SEC.
+
+
+Method 2 uses time. Tihs function returns the time has one parameter, which specifies a location to
+hold the time. Since we do not want to keep the time, we pass in a NULL value for this paramter. As
+was true of Metohd 1, we use time at the start and the end of the event we want to time. We then
+pass these two times into difftime, which returns the difference between two times measured in
+seconds. Since the type of this result is time_t, we type cast it to double before printing it out.
+
