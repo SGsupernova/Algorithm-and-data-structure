@@ -1,5 +1,5 @@
 # Basic Concepts
-- 1.1 Overview:System Life Cycle]<br/>
+- 1.1 Overview:System Life Cycle<br/>
 - 1.2 Pointers and Dynamic Memory Allocation<br/>
 	- 1.2.1 Pointers<br/>
 	- 1.2.2 Dynamic Memory Allocation<br/>
