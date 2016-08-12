@@ -1,0 +1,28 @@
+# ARRAYS AND STRUCTURES
+- 2.1 Arrays<ibr/>
+	- 2.1.1 The Abstract Data Type<br/>
+	- 2.1.2 Arrays in C<br/>
+- 2.2 Dynamically Allocated Arrays<br/>
+	- 2.2.1 One-dimensional Arrays<br/>
+	- 2.2.2 Two-dimensional Arrays<br/>
+- 2.3 Structures and Unions<br/>
+	- 2.3.1 Structures<br/>
+	- 2.3.2 Unions<br/>
+	- 2.3.3 Internal Represetation of Structures<br/>
+	- 2.3.4 Self-referential Structures<br/>
+- 2.4 Polynomials<br/>
+	- 2.4.1 The Abstract Data Type<br/>
+	- 2.4.2 Polynomial Representation<br/>
+	- 2.4.3 Polynimial Addition<br/>
+- 2.5 Sparse Matrices<br/>
+	- 2.5.1 The Abstract Data Type<br/>
+	- 2.5.2 Sparse Matri Representation<br/>
+	- 2.5.3 Transposing a Matrix<br/>
+	- 2.5.4 Matrix Multiplication<br/>
+- 2.6 Representation of Multidimensional Arrays<br/>
+- 2.7 Strings</br>
+	- 2.7.1 The Abstract Data type<br/>
+	- 2.7.2 Strings in C<br/>
+	- 2.7.3 Pattern Matching<br/>
+- 2.8 References and Selected Readings<br/>
+- 2.9 Additional Execises<br/>

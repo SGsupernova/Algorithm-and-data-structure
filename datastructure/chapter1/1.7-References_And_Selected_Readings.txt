@@ -1,0 +1,12 @@
+A good introduction to programming in C can be found in the text C: An advanced introduction by
+Narain Gehani, Silicon Press, NJ, 1995. 
+Testing computer software, 2nd Edition, by C.Kaner, J.Falk, and H.Nguyen, John Wiley, New York, NY,
+1999 has a more thorough treatment of software testing and debugging techniques.
+
+The following books provide asymptotic analyses for several programs: Handbook of data structures
+and applications edited by D.Mehta and S. Sahni, Chapman & Sahni, and S.Rajasekaran, W.H.Freeman and
+Co.,New York, NY, 1998
+Introduction to algorithm, Second Edition, by T.Cormen, C.Leiserson, and R.Rivest, McGraw-HIll, New
+York, NY, 2002
+Compared to What:An introduction to the Analysis of Algorithms by G.Rawlins, W.H.Freeman and
+Co.,NY,1992.
