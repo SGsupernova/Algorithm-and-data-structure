@@ -9,4 +9,4 @@ Co.,New York, NY, 1998
 Introduction to algorithm, Second Edition, by T.Cormen, C.Leiserson, and R.Rivest, McGraw-HIll, New
 York, NY, 2002
 Compared to What:An introduction to the Analysis of Algorithms by G.Rawlins, W.H.Freeman and
-Co.,NY,1992.
+Co.,NY,1992. 
