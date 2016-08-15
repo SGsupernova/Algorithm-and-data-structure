@@ -1,0 +1,23 @@
+Intuitively an array is a set of pairs, <index, value>, such that each index that is defined has a
+value associated with it. In mathematical terms, we call this a correspondence or a mapping. Aside
+from creating a new array, most languages provide only two standard operations for arrays, one that
+retrieves a value, and a second that stores a value.
+
+ADT Array is
+	object : A set of pairs <index, value> where for each value of index there is a value from the
+	set item. Index is a finite ordered set of one or more dimensions.
+	functions :
+		for all A ∈ Array, i ∈ index, x ∈ item, size ∈ integer
+
+		ArrayCreate(j, list)	:= return an array of j dimensions where list is a j-tuple whose
+								   ithe element is the size of the ith dimension. Items are
+								   undefined.
+
+		ItemRetrieve(A, i)		:= if (i ∈ index) return the item associated with index value i in
+								   array A
+								   else return error
+
+		ArrayStore(A, i, x)		:= if (i in index)
+								   return an array that is identical to array A except the new pair
+								   <i, x> has been inserted else return error.
+end Array
