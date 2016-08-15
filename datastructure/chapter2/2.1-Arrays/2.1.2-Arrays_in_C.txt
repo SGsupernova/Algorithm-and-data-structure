@@ -1,0 +1,4 @@
+Consider the implementation of one-dimensional arrays.
+The address of the first element list[0], is called the base address. If the size of an integer on
+your machine is denoted by sizeof(int), then the memory address of list[i] is α + i*sizeof(int),
+where α is the base address. 
