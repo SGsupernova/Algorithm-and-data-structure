@@ -5,8 +5,11 @@
 We believe that a solid foundation in data abstraction, algorithm specification, and performance analysis and measurement provides the necessary methodology. 
 In this chapter, we will discuss each of these areas in detail.
 However, before we begin we want to place these tools in a context that views programming as more than writing code 
-Good programmers regard large-scale computer programs as systems that contain many complex interacting parts. As systems, these programs undergo a development process called the system life cycle.
-We consider this cycle as consisting of requirements, analysis, design, coding, and verification phases. Although we will consider them separately, these phases are highly  interrelated and follow only a very crude sequential time frame.
+Good programmers regard large-scale computer programs as systems that contain many complex
+interacting parts. As systems, these programs undergo a development process called the system life
+cycle. We consider this cycle as consisting of requirements, analysis, design, coding, and
+verification phases. Although we will consider them separately, these phases are highly
+interrelated and follow only a very crude sequential time frame.
 
 
 (1) Requirements.
