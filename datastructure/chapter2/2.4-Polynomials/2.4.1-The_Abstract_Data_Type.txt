@@ -1,0 +1,15 @@
+The ordered or linear list.
+
+The most common implementation is to represent an ordered list as an array where we associate the
+list element, itemᵢ, with the array index i. We call this a sequential mapping because,
+	 assuming the standard implementation of an array, we are storing itemᵢ, itemᵢ₊₁ into
+	 consecutive slots i and i+1 of the array.
+
+Let us jump right into a problem requiring ordered lists, which we will solve by using
+one-dimensional arrays. This problem has become the classical example for motivating the use of list
+processing techniques, which we will see in later chapters.
+Viewd from a mathematical perspective, a polynomail is a sum of terms, where each term has a form
+axⁿ, where x is the variable, a is the coefficient, and n is the exponent. Two example
+polynomails are: 
+	A(x) = 3x²⁰+ 4 and B(x) = x⁴ + 3x² + 1
+The largest (or leading) exponent of a polynomal is called its degree.
